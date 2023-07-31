@@ -1,11 +1,16 @@
 @use "../utils" as u; 
 
+//placeholder in sass
+// %widget {
+//     padding: u.rem(16);
+// }
+
 .grid {
     display: grid; 
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
-    gap: 40px;
-    width: min(100% - 40px, 1000px);
+    gap: u.rem(40);
+    width: min(100% - u.rem(40), u.rem(1000));
     margin: 0 auto; 
 
     @include u.breakpoint(large) {
@@ -15,16 +20,33 @@
 
 
     &__main, &__aside {
-        padding: 40px; 
+        padding: u.rem(40); 
     }
     &__main{
         background-color: hsl(240, 88%, 41%);
     }
     &__aside {
-        background-color: hsl(300, 90%, 34%);
 
         @include u.breakpoint-down(medium) {
             text-align: center;
+        }
+
+    }
+
+    &__widget {
+        // $widget: &;
+        padding: u.rem(16);
+
+        &.magenta {
+            // @extend %widget; 
+            background-color: hsl(300, 90%, 34%);
+        }
+
+        &.green {
+            // @extend .grid__widget; //without using about widget varaible and full parent class name
+            //@extend #{$widget}; using variable from above parent;
+            // @extend %widget;
+            background-color: hsl(120, 92%, 30%);
         }
     }
 }
